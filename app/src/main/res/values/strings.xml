@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">WAppBIU_Android</string>
+    <string name="login_etUsername">Username</string>
+    <string name="login_etPassword">Password</string>
+    <string name="login_btnLogin">Login</string>
+    <string name="register_suggest">not Registered? Click here to Register!</string>
+    <string name="display_name">Display Name</string>
+    <string name="login_suggest">Already Registered? Click here to Login</string>
+    <string name="register">Register</string>
+
+</resources>
