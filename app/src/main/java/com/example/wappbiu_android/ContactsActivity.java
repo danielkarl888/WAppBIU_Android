@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -45,21 +46,23 @@ public class ContactsActivity extends AppCompatActivity {
             Contact contact = new Contact(userNames[i], lastMassages[i], new Date());
             contacts.add(contact);
         }
+        ImageButton addContact = findViewById(R.id.addContact);
         listView = findViewById(R.id.list_view);
         adapter = new ContactListAdapter(getApplicationContext(), contacts);
         listView.setAdapter(adapter);
         listView.setClickable(true);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
 
-                intent.putExtra("userName", userNames[i]);
-                intent.putExtra("lastMassage", lastMassages[i]);
-                intent.putExtra("time", times[i]);
+            intent.putExtra("userName", userNames[i]);
+            intent.putExtra("lastMassage", lastMassages[i]);
+            intent.putExtra("time", times[i]);
 
-                startActivity(intent);
-            }
+            startActivity(intent);
+        });
+        addContact.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), AddContactActivity.class);
+            startActivity(intent);
         });
 
     }
