@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnLogin = binding.btnLogin;
         TextView RegiSuggest = binding.RegiSuggest;
         btnLogin.setOnClickListener(v -> {
-            Intent i = new Intent(this, MainActivity2.class);
+            Intent i = new Intent(this, ContactsActivity.class);
             startActivity(i);
         });
         RegiSuggest.setOnClickListener(v -> {
