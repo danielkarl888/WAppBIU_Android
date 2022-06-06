@@ -15,6 +15,12 @@ public class Contact {
 
     private String server;
 
+    public Contact(String name, String last, Date lastDate) {
+        this.name = name;
+        this.last = last;
+        LastDate = lastDate;
+    }
+
     private String last ;
 
     private Date LastDate;
