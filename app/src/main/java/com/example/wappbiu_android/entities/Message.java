@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Entity
 public class Message {
+
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -15,6 +16,8 @@ public class Message {
     private Date created;
 
     private boolean sent;
+
+
 
     public int getId() {
         return id;
