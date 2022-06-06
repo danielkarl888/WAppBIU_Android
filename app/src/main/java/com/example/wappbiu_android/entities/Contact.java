@@ -21,12 +21,11 @@ public class Contact {
         LastDate = lastDate;
     }
 
-    private String last ;
+    private String last;
 
     private Date LastDate;
 
     private List<Message> messages;
-
 
     public String getId() {
         return id;
