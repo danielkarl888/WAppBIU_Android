@@ -67,6 +67,13 @@
 
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/settingsLink"
+        android:layout_width="48dp"
+        android:layout_height="46dp"
+        android:background="@color/green"
+        app:srcCompat="@android:drawable/ic_menu_set_as"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

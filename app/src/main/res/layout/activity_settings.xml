@@ -19,11 +19,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <TextView
-            android:id="@+id/RegisterHeader"
+            android:id="@+id/loginHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Register"
+            android:text="Settings"
             android:textSize="48dp"
             android:paddingBottom="15dp"
             android:textColor="@color/black"
@@ -35,54 +35,22 @@
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:padding="15dp"
-
-            android:hint="@string/login_etUsername"
+            android:hint="Default Server"
             android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/editTextRegiPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:padding="15dp"
-            android:hint="@string/login_etPassword"
-            android:inputType="textPassword" />
-        <EditText
-            android:id="@+id/editTextRegiDisplayName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:padding="15dp"
-            android:hint="@string/display_name"
-            android:inputType="textPersonName" />
-        <TextView
-            android:id="@+id/LoginSuggest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:text="@string/login_suggest"
-            android:layout_gravity="center"
-            android:linksClickable="true"/>
+
 
         <Button
-            android:id="@+id/btnRegister"
+            android:id="@+id/btnSave"
             android:layout_width="142dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="12dp"
             android:backgroundTint="@color/blue"
-            android:text="@string/register" />
+            android:text="Save" />
 
     </LinearLayout>
-    <ImageButton
-        android:id="@+id/settingsLink2"
-        android:layout_width="48dp"
-        android:layout_height="46dp"
-        android:background="@color/green"
-        app:srcCompat="@android:drawable/ic_menu_set_as"
-        tools:ignore="MissingConstraints" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
