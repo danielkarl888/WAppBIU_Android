@@ -7,5 +7,7 @@
     <string name="display_name">Display Name</string>
     <string name="login_suggest">Already Registered? Click here to Login</string>
     <string name="register">Register</string>
+    <string name="BaseUrl">http://10.0.2.2:5030/api/</string>
+
 
 </resources>

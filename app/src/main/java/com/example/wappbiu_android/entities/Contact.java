@@ -9,13 +9,13 @@ import com.example.wappbiu_android.DateConverter;
 import com.example.wappbiu_android.MessageConvertor;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
 public class Contact {
     @PrimaryKey
     @NonNull
-
     private String id;
 
     private String name;
@@ -26,10 +26,17 @@ public class Contact {
 
     @TypeConverters(DateConverter.class)
     private Date LastDate;
+
     @TypeConverters(MessageConvertor.class)
     private List<Message> messages;
 
     public Contact() {
+    }
+
+    public Contact(@NonNull String id, String name, String server) {
+        this.id = id;
+        this.name = name;
+        this.server = server;
     }
 
     public Contact(String name, String last, Date lastDate) {
@@ -38,6 +45,8 @@ public class Contact {
         LastDate = lastDate;
         this.server = "localhost:5000";
         this.id = "daniel";
+        this.messages = new LinkedList<>();
+        this.messages.add(new Message());
     }
 
     public String getId() {

@@ -1,15 +1,24 @@
 package com.example.wappbiu_android.entities;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.wappbiu_android.ContactConvertor;
+import com.example.wappbiu_android.MessageConvertor;
+
 import java.util.List;
-
+@Entity
 public class User {
-
+    @PrimaryKey
+    @NonNull
     private String username;
 
     private String displayName;
 
     private String password;
-
+    @TypeConverters(ContactConvertor.class)
     private List<Contact> conversations;
 
     public String getUsername() {
