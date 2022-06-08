@@ -10,9 +10,13 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginVertical="5dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="15dp"
         android:orientation="vertical">
 
         <TextView
@@ -23,14 +27,13 @@
             android:elevation="2dp"
             android:paddingHorizontal="16dp"
             android:paddingVertical="12dp"
-            android:text="How are you doing?"
+            android:text="bar"
             android:textSize="18dp" />
 
         <TextView
-            android:id="@+id/text_gchat_time"
+            android:id="@+id/text_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginEnd="1dp"
             android:layout_marginRight="5dp"
             android:text="10:00"
