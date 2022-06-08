@@ -13,6 +13,7 @@ import com.example.wappbiu_android.api.ContactAPI;
 import com.example.wappbiu_android.daos.ContactDao;
 import com.example.wappbiu_android.databinding.ActivityMainBinding;
 import com.example.wappbiu_android.entities.Contact;
+import com.example.wappbiu_android.repositories.ContactsRepository;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -30,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "WAppBiuDB.db")
                 .allowMainThreadQueries().build();
-
-        contactDao = db.contactDao();
+//
+//        contactDao = db.contactDao();
         List<Contact> contacts = new LinkedList<>();
         //ContactAPI contactAPI = new ContactAPI();
         Contact c =  new Contact("dan", "daniel", "local");

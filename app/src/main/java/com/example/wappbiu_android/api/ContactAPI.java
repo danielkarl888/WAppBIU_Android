@@ -1,9 +1,13 @@
 package com.example.wappbiu_android.api;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.wappbiu_android.R;
 import com.example.wappbiu_android.WAppBIU_Android;
 import com.example.wappbiu_android.entities.Contact;
+import com.example.wappbiu_android.repositories.ContactsRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -35,13 +39,16 @@ public class ContactAPI {
                 .build();
         webServiceAPI = retrofit.create(WebServiceAPI.class);
     }
-    public void get(List<Contact> contacts) {
+    public void get(MutableLiveData<List<Contact>> conts) {
         Call<List<Contact>> call = webServiceAPI.getAllContacts("david");
         call.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-                // save it into the db. in addition , update the screen - with calling the repo
-                response.body();
+//                // save it into the db. in addition , update the screen - with calling the repo
+//                response.body().get(0).setLastDate(new Date());
+//                response.body().get(1).setLastDate(new Date());
+//                response.body().get(2).setLastDate(new Date());
+                conts.postValue(response.body());
              /*
                 new Thread(() -> {
                     dao.clear();

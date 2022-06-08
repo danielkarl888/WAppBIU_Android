@@ -15,11 +15,14 @@ import com.example.wappbiu_android.R;
 import com.example.wappbiu_android.entities.Contact;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ContactListAdapter extends ArrayAdapter<Contact> {
     LayoutInflater inflater;
-    public ContactListAdapter(Context ctx, ArrayList<Contact> contactArrayList) {
+    List<Contact> contactArrayList;
+    public ContactListAdapter(Context ctx, List<Contact> contactArrayList) {
         super(ctx, R.layout.contact_item, contactArrayList);
+        this.contactArrayList = contactArrayList;
         this.inflater = LayoutInflater.from(ctx);
     }
 
@@ -44,5 +47,12 @@ public class ContactListAdapter extends ArrayAdapter<Contact> {
         time.setText(contact.getLastDate().toString());
         return convertView;
     }
+    public void setContacts(List<Contact> c) {
+        contactArrayList.clear();
+        contactArrayList.addAll(c);
+        notifyDataSetChanged();
+    }
 
 }
+
+

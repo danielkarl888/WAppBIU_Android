@@ -1,6 +1,7 @@
 package com.example.wappbiu_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +14,15 @@ import android.widget.TextView;
 
 import com.example.wappbiu_android.adapters.ContactListAdapter;
 import com.example.wappbiu_android.entities.Contact;
+import com.example.wappbiu_android.viewmodels.ContactsViewModel;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 public class ContactsActivity extends AppCompatActivity {
+    private ContactsViewModel contactsViewModel;
+
+
     final private String[] userNames = {
             "Blue User", "Golden User", "Green User", "Red User", "Lightblue User", "Pink User"
     };
@@ -37,6 +42,8 @@ public class ContactsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
+        contactsViewModel = new ViewModelProvider(this).get(ContactsViewModel.class);
+
         TextView current_user_name  = findViewById(R.id.current_user_name);
         ImageView profile_image_currentUser = findViewById(R.id.profile_image_currentUser);
         current_user_name.setText("daniel karl");
@@ -49,6 +56,7 @@ public class ContactsActivity extends AppCompatActivity {
         ImageButton addContact = findViewById(R.id.addContact);
         listView = findViewById(R.id.list_view);
         adapter = new ContactListAdapter(getApplicationContext(), contacts);
+
         listView.setAdapter(adapter);
         listView.setClickable(true);
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
@@ -65,6 +73,8 @@ public class ContactsActivity extends AppCompatActivity {
 
             startActivity(intent);
         });
-
+        contactsViewModel.get().observe(this, convers -> {
+            adapter.setContacts(convers);
+        });
     }
 }
