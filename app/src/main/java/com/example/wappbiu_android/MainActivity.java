@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
         contactDao = db.contactDao();
         List<Contact> contacts = new LinkedList<>();
-        ContactAPI contactAPI = new ContactAPI();
+        //ContactAPI contactAPI = new ContactAPI();
         Contact c =  new Contact("dan", "daniel", "local");
         //contactAPI.post(c);
-        contactAPI.get(contacts);
+        //contactAPI.get(contacts);
         //contactAPI.getContact("bob");
         //Button btnLogin = findViewById(binding.btnLogin);
         Button btnLogin = binding.btnLogin;

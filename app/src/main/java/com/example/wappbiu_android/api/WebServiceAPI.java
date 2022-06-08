@@ -1,6 +1,7 @@
 package com.example.wappbiu_android.api;
 
 import com.example.wappbiu_android.entities.Contact;
+import com.example.wappbiu_android.entities.User;
 
 import java.util.List;
 
@@ -20,6 +21,14 @@ public interface WebServiceAPI {
    Call<Contact> createContact(@Query("user") String user, @Body Contact contact);
     @GET("Contacts/{id}")
     Call<Contact> getContact(@Path("id") String id, @Query("user") String user);
+
+    @POST("Users/Login")
+    Call<User> login(@Body User user);
+
+    @POST("Users/Register")
+    Call<User> register(@Body User user);
+
+
 
 
 //    @DELETE("posts/{id}")
