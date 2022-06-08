@@ -21,8 +21,14 @@ public class Message {
 
     private boolean sent;
 
-    public Message() {
+    public Message(int id, String content, Date created, boolean sent) {
+        this.content = content;
+        this.id = id;
+        this.created = created;
+        this.sent = sent;
     }
+
+    public Message(){}
 
     public int getId() {
         return id;
