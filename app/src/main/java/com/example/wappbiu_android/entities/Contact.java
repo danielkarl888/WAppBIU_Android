@@ -1,31 +1,44 @@
 package com.example.wappbiu_android.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.wappbiu_android.DateConverter;
+import com.example.wappbiu_android.MessageConvertor;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
 public class Contact {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
+    @NonNull
+
     private String id;
 
     private String name;
 
     private String server;
 
+    private String last;
+
+    @TypeConverters(DateConverter.class)
+    private Date LastDate;
+    @TypeConverters(MessageConvertor.class)
+    private List<Message> messages;
+
+    public Contact() {
+    }
+
     public Contact(String name, String last, Date lastDate) {
         this.name = name;
         this.last = last;
         LastDate = lastDate;
+        this.server = "localhost:5000";
+        this.id = "daniel";
     }
-
-    private String last;
-
-    private Date LastDate;
-
-    private List<Message> messages;
 
     public String getId() {
         return id;

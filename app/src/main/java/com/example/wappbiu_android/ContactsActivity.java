@@ -62,6 +62,7 @@ public class ContactsActivity extends AppCompatActivity {
         });
         addContact.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), AddContactActivity.class);
+
             startActivity(intent);
         });
 

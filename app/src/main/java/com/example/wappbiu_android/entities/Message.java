@@ -2,6 +2,9 @@ package com.example.wappbiu_android.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.wappbiu_android.DateConverter;
 
 import java.util.Date;
 
@@ -13,11 +16,13 @@ public class Message {
 
     private String content;
 
+    @TypeConverters(DateConverter.class)
     private Date created;
 
     private boolean sent;
 
-
+    public Message() {
+    }
 
     public int getId() {
         return id;
