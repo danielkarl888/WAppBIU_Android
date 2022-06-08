@@ -16,7 +16,6 @@ import java.util.List;
 public class Contact {
     @PrimaryKey
     @NonNull
-
     private String id;
 
     private String name;
@@ -27,10 +26,17 @@ public class Contact {
 
     @TypeConverters(DateConverter.class)
     private Date LastDate;
+
     @TypeConverters(MessageConvertor.class)
     private List<Message> messages;
 
     public Contact() {
+    }
+
+    public Contact(@NonNull String id, String name, String server) {
+        this.id = id;
+        this.name = name;
+        this.server = server;
     }
 
     public Contact(String name, String last, Date lastDate) {

@@ -13,7 +13,7 @@ import java.util.List;
 
 @Dao
 public interface MessageDao {
-
+    // get a certain message
     @Query("SELECT * FROM message where id = :id" )
     Message get(String id);
 
@@ -21,7 +21,7 @@ public interface MessageDao {
     List<Message> index();
 
     @Insert
-    void insert (Message... messages);
+    void insertMessage(Message... messages);
 
     @Update
     void update (Message... messages);
