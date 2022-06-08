@@ -9,11 +9,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.wappbiu_android.api.ContactAPI;
 import com.example.wappbiu_android.daos.ContactDao;
 import com.example.wappbiu_android.databinding.ActivityMainBinding;
 import com.example.wappbiu_android.entities.Contact;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -22,15 +25,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //getActionBar().hide();
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "WAppBiuDB")
+        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "WAppBiuDB.db")
                 .allowMainThreadQueries().build();
 
         contactDao = db.contactDao();
-
+        List<Contact> contacts = new LinkedList<>();
+        ContactAPI contactAPI = new ContactAPI();
+        contactAPI.get(contacts);
         //Button btnLogin = findViewById(binding.btnLogin);
         Button btnLogin = binding.btnLogin;
         TextView RegiSuggest = binding.RegiSuggest;
@@ -38,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
         btnLogin.setOnClickListener(v -> {
             Intent i = new Intent(this, ContactsActivity.class);
-            //Contact c = new Contact(binding.editTextTextPersonName.getText().toString(), binding.editTextTextPassword2.getText().toString(),
-                    //new Date());
-            //contactDao.insert(c);
             startActivity(i);
         });
         RegiSuggest.setOnClickListener(v -> {

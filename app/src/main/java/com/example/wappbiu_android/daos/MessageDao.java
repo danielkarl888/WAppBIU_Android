@@ -30,5 +30,6 @@ public interface MessageDao {
     void delete (Message... messages);
 
 
+
 }
 

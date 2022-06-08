@@ -9,6 +9,7 @@ import com.example.wappbiu_android.DateConverter;
 import com.example.wappbiu_android.MessageConvertor;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -38,6 +39,8 @@ public class Contact {
         LastDate = lastDate;
         this.server = "localhost:5000";
         this.id = "daniel";
+        this.messages = new LinkedList<>();
+        this.messages.add(new Message());
     }
 
     public String getId() {
