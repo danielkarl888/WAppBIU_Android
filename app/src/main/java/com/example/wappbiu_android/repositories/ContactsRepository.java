@@ -14,16 +14,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ContactsRepository {
-//    private ContactDao contactDao;
+    private ContactDao contactDao;
     private ContactListData contactListData;
     private ContactAPI api;
     private String logged_user;
 
-    public ContactsRepository(String logged_user) {
-//        AppDB db  = Room.databaseBuilder(WAppBIU_Android.context, AppDB.class, "WAppBiuDB.db")
-//                    .allowMainThreadQueries().build();
+    public ContactsRepository(String logged_user, ContactDao contactDao) {
 //
-//        contactDao = db.contactDao();
+        this.contactDao = contactDao;
         contactListData = new ContactListData();
         this.logged_user = logged_user;
         api = new ContactAPI(logged_user);
@@ -40,19 +38,17 @@ public class ContactsRepository {
         protected void onActive() {
             super.onActive();
             new Thread(()->{
-                api.getAllContacts(this);
+                api.getAllContacts(this,contactDao);
             }).start();
 //            PostAPI postAPI = new PostAPI();
 //            postAPI.get(this);
-
-
         }
     }
     public LiveData<List<Contact>> getAll() {
         return contactListData;
     }
 //    public void add(final Post post) {
-//        api.add(post);
+//        api.addContact(post);
 //    }
 //
 //    public void delete(final Post post) {

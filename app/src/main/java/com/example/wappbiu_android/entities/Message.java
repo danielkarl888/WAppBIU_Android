@@ -28,7 +28,7 @@ public class Message {
         this.sent = sent;
     }
 
-    public Message(){}
+    //public Message(){}
 
     public int getId() {
         return id;
