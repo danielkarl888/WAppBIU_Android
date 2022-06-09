@@ -44,7 +44,7 @@ public class ContactListAdapter extends ArrayAdapter<Contact> {
         imageView.setImageResource(R.drawable.profileimage);
         userName.setText(contact.getName());
         lastMsg.setText(contact.getLast());
-        time.setText(contact.getLastDate().toString());
+        time.setText(contact.getLastDate());
         return convertView;
     }
     public void setContacts(List<Contact> c) {

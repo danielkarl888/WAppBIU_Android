@@ -23,7 +23,7 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        Date date = new Date();
+        String date = new Date().toString();
         ArrayList <Message> messages = new ArrayList<>();
         messages.add(new Message(1,"hi",date,true));
         messages.add(new Message(2,"bye",date,true));

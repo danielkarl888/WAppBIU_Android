@@ -58,12 +58,14 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(i);
         });
         registerViewModel.getError().observe(this, error -> binding.errorRegi.setText(error));
-        registerViewModel.getError().observe(this, error -> update(error.toString()));
+        registerViewModel.getError().observe(this, error -> update(error.toString(), binding.editTextRegiUserName));
 
     }
 
-    private void update(String e) {
+    private void update(String e, EditText et) {
+
         Intent i = new Intent(this, ContactsActivity.class);
+        i.putExtra("logged_user", et.getText().toString());
         if (e.equals("")) {
             startActivity(i);
         }

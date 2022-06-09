@@ -17,14 +17,16 @@ public class ContactsRepository {
 //    private ContactDao contactDao;
     private ContactListData contactListData;
     private ContactAPI api;
+    private String logged_user;
 
-    public ContactsRepository() {
+    public ContactsRepository(String logged_user) {
 //        AppDB db  = Room.databaseBuilder(WAppBIU_Android.context, AppDB.class, "WAppBiuDB.db")
 //                    .allowMainThreadQueries().build();
 //
 //        contactDao = db.contactDao();
         contactListData = new ContactListData();
-        api = new ContactAPI();
+        this.logged_user = logged_user;
+        api = new ContactAPI(logged_user);
     }
     class ContactListData extends MutableLiveData<List<Contact>> {
 
@@ -38,7 +40,7 @@ public class ContactsRepository {
         protected void onActive() {
             super.onActive();
             new Thread(()->{
-                api.get(this);
+                api.getAllContacts(this);
             }).start();
 //            PostAPI postAPI = new PostAPI();
 //            postAPI.get(this);

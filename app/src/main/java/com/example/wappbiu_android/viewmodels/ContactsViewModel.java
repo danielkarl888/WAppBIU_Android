@@ -1,4 +1,6 @@
 package com.example.wappbiu_android.viewmodels;
+import android.app.Application;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -12,10 +14,17 @@ public class ContactsViewModel extends ViewModel{
     private LiveData<List<Contact>> contacts;
     private ContactsRepository mRepository;
 
-    public ContactsViewModel() {
-        this.mRepository = new ContactsRepository();
+    private Application application;
+    private String param;
+
+    public ContactsViewModel(Application mApplication, String mParam) {
+        this.mRepository = new ContactsRepository(mParam);
+        this.param = mParam;
         this.contacts = mRepository.getAll();
+        this.application =mApplication;
+
     }
+
 
     public LiveData<List<Contact>> get(){ return contacts;}
 

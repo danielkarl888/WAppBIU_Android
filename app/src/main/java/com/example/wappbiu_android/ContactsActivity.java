@@ -15,13 +15,14 @@ import android.widget.TextView;
 import com.example.wappbiu_android.adapters.ContactListAdapter;
 import com.example.wappbiu_android.entities.Contact;
 import com.example.wappbiu_android.viewmodels.ContactsViewModel;
+import com.example.wappbiu_android.viewmodels.MyViewModelFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 public class ContactsActivity extends AppCompatActivity {
+    private String logged_user;
     private ContactsViewModel contactsViewModel;
-
 
     final private String[] userNames = {
             "Blue User", "Golden User", "Green User", "Red User", "Lightblue User", "Pink User"
@@ -42,15 +43,16 @@ public class ContactsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
-        contactsViewModel = new ViewModelProvider(this).get(ContactsViewModel.class);
-
+        Intent in = getIntent();
+        logged_user = in.getExtras().getString("logged_user");
+        contactsViewModel = new ViewModelProvider(this, new MyViewModelFactory(getApplication(), logged_user)).get(ContactsViewModel.class);
         TextView current_user_name  = findViewById(R.id.current_user_name);
         ImageView profile_image_currentUser = findViewById(R.id.profile_image_currentUser);
-        current_user_name.setText("daniel karl");
+        current_user_name.setText(logged_user);
         profile_image_currentUser.setImageResource(R.drawable.profileimage);
         ArrayList<Contact> contacts = new ArrayList<>();
         for (int i = 0; i < lastMassages.length; i++) {
-            Contact contact = new Contact(userNames[i], lastMassages[i], new Date());
+            Contact contact = new Contact(userNames[i], lastMassages[i], times[i]);
             contacts.add(contact);
         }
         ImageButton addContact = findViewById(R.id.addContact);

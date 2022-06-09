@@ -16,12 +16,12 @@ public class Message {
 
     private String content;
 
-    @TypeConverters(DateConverter.class)
-    private Date created;
+//    @TypeConverters(DateConverter.class)
+    private String created;
 
     private boolean sent;
 
-    public Message(int id, String content, Date created, boolean sent) {
+    public Message(int id, String content, String created, boolean sent) {
         this.content = content;
         this.id = id;
         this.created = created;
@@ -46,11 +46,11 @@ public class Message {
         this.content = content;
     }
 
-    public Date getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 

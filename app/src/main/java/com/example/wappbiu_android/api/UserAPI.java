@@ -4,6 +4,7 @@ import com.example.wappbiu_android.R;
 import com.example.wappbiu_android.WAppBIU_Android;
 import com.example.wappbiu_android.entities.Contact;
 import com.example.wappbiu_android.entities.User;
+import com.example.wappbiu_android.viewmodels.LoginViewModel;
 import com.example.wappbiu_android.viewmodels.RegisterViewModel;
 
 import java.util.List;
@@ -49,4 +50,24 @@ public class UserAPI {
     }
 
 
-}
+    public void login(User user, LoginViewModel loginViewModel) {
+        Call<User> call = webServiceAPI.login(user);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                // save it into the db. in addition , update the screen - with calling the repo
+                new Thread(() -> {
+                    response.body();
+                    if (response.isSuccessful()) {
+                        loginViewModel.getError().postValue("");
+                    } else {
+                        loginViewModel.getError().postValue("username/password is not valid!");
+                    }}).start();
+            }
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+            }
+        });
+    }
+    }
+

@@ -24,11 +24,19 @@ public class Contact {
 
     private String last;
 
-    @TypeConverters(DateConverter.class)
-    private Date LastDate;
+//    @TypeConverters(DateConverter.class)
+    private String LastDate;
 
     @TypeConverters(MessageConvertor.class)
     private List<Message> messages;
+
+    public Contact(@NonNull String id, String name, String server, String last, String lastDate) {
+        this.id = id;
+        this.name = name;
+        this.server = server;
+        this.last = last;
+        LastDate = lastDate;
+    }
 
     public Contact() {
     }
@@ -39,15 +47,7 @@ public class Contact {
         this.server = server;
     }
 
-    public Contact(String name, String last, Date lastDate) {
-        this.name = name;
-        this.last = last;
-        LastDate = lastDate;
-        this.server = "localhost:5000";
-        this.id = "daniel";
-        this.messages = new LinkedList<>();
-        this.messages.add(new Message());
-    }
+
 
     public String getId() {
         return id;
@@ -81,11 +81,11 @@ public class Contact {
         this.last = last;
     }
 
-    public Date getLastDate() {
+    public String getLastDate() {
         return LastDate;
     }
 
-    public void setLastDate(Date lastDate) {
+    public void setLastDate(String lastDate) {
         LastDate = lastDate;
     }
 
