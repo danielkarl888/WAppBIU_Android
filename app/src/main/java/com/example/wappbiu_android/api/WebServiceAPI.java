@@ -1,8 +1,10 @@
 package com.example.wappbiu_android.api;
 
 import com.example.wappbiu_android.entities.Contact;
+import com.example.wappbiu_android.entities.Message;
 import com.example.wappbiu_android.entities.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -27,6 +29,9 @@ public interface WebServiceAPI {
 
     @POST("Users/Register")
     Call<User> register(@Body User user);
+
+    @GET("Contacts/{id}/messages")
+    Call<List<Message>> getMessages (@Path("id") String id, @Query("user") String user);
 
 
 
