@@ -23,6 +23,8 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ContactsActivity extends AppCompatActivity {
     private String logged_user;
@@ -31,6 +33,7 @@ public class ContactsActivity extends AppCompatActivity {
     ContactListAdapter adapter;
     private AppDB db;
     public static ContactDao contactDao;
+    private Map<String, ContactDao> contactDaoMap;
 
 //    final private String[] userNames = {
 //            "Blue User", "Golden User", "Green User", "Red User", "Lightblue User", "Pink User"
@@ -46,14 +49,19 @@ public class ContactsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Map<String, ContactDao> contactDaoMap = SingeltonContactDaoMap.getInstance().map;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
-                db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "WAppBiuDB4.db")
-                .allowMainThreadQueries().build();
-        contactDao = db.contactDao();
-
         Intent in = getIntent();
         logged_user = in.getExtras().getString("logged_user");
+        if (contactDaoMap.containsKey(logged_user)) {
+            contactDao = contactDaoMap.get(logged_user);
+        } else {
+            db = Room.databaseBuilder(getApplicationContext(), AppDB.class, logged_user + ".db")
+                    .allowMainThreadQueries().build();
+            contactDao = db.contactDao();
+            contactDaoMap.put(logged_user,contactDao);
+        }
         Object[] objects = new Object[2];
         objects[0] = logged_user;
         objects[1] = contactDao;
@@ -74,7 +82,10 @@ public class ContactsActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         listView.setClickable(true);
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
-            Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+            Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+            intent.putExtra("logged_user", logged_user);
+
+
 //            intent.putExtra("userName", userNames[i]);
 //            intent.putExtra("lastMassage", lastMassages[i]);
 //            intent.putExtra("time", times[i]);
@@ -83,7 +94,6 @@ public class ContactsActivity extends AppCompatActivity {
         addContact.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), AddContactActivity.class);
             intent.putExtra("logged_user", logged_user);
-
             startActivity(intent);
         });
         contactsViewModel.get().observe(this, convers -> {
