@@ -24,7 +24,6 @@ public class MessageRepository {
         public MessageListData () {
             super();
             List <Message> messages = new LinkedList<>();
-            //setValue(posts);
         }
 
         @Override

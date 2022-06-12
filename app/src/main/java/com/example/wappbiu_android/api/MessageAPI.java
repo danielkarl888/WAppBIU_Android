@@ -20,6 +20,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MessageAPI {
     Retrofit retrofit;
     WebServiceAPI webServiceAPI;
+    private String logged_user;
+    private String id_contact;
     public MessageAPI() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(WAppBIU_Android.context.getString(R.string.BaseUrl))
