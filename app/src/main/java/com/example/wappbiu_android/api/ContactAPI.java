@@ -4,7 +4,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.wappbiu_android.R;
 import com.example.wappbiu_android.WAppBIU_Android;
+import com.example.wappbiu_android.daos.ContactDao;
 import com.example.wappbiu_android.entities.Contact;
+import com.example.wappbiu_android.entities.Message;
 
 import java.util.Date;
 import java.util.List;
@@ -37,14 +39,20 @@ public class ContactAPI {
                 .build();
         webServiceAPI = retrofit.create(WebServiceAPI.class);
     }
-    public void getAllContacts(MutableLiveData<List<Contact>> contacts) {
+    public void getAllContacts(MutableLiveData<List<Contact>> contacts, ContactDao contactDao) {
         Call<List<Contact>> call = webServiceAPI.getAllContacts(logged_user);
         call.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
 //                // save it into the db. in addition , update the screen - with calling the repo
-
-             contacts.postValue(response.body());
+                for (int i = 0; i < response.body().size(); i++) {
+                    contactDao.insert(response.body().get(i));
+                }
+             contacts.postValue(contactDao.index());
+//                List<Message> m = response.body().get(0).getMessages();
+//                Message m2 = new Message(0,"check","12:25", true);
+//                contactDao.insertMessage(m2);
+//                int x =1;
              /*
                 new Thread(() -> {
                     dao.clear();
@@ -54,12 +62,12 @@ public class ContactAPI {
                 */
             }
             @Override
-            public void onFailure(Call<List<Contact>> call, Throwable t) {
+            public void onFailure(Call<List<Contact>> vidcall, Throwable t) {
             }
         });
     }
 
-    public void addContact(MutableLiveData<List<Contact>> contacts, Contact contact) {
+    public void addContact(Contact contact) {
         Call<Contact> call = webServiceAPI.createContact(logged_user,contact);
         call.enqueue(new Callback<Contact>() {
             @Override
@@ -102,5 +110,4 @@ public class ContactAPI {
             }
         });
     }
-
 }

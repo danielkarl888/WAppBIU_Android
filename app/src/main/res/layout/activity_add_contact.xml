@@ -29,7 +29,7 @@
             android:textColor="@color/black"
             />
         <EditText
-            android:id="@+id/editTextNickName"
+            android:id="@+id/editTextAddNickName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -39,7 +39,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTextContactUsername"
+            android:id="@+id/editTextAddUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -48,7 +48,7 @@
             android:hint="contact username..."
             android:inputType="textPersonName" />
         <EditText
-            android:id="@+id/editTextContactServer"
+            android:id="@+id/editTextAddServer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -57,7 +57,7 @@
             android:hint="sever address..."
             android:inputType="textPersonName" />
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnAddContact"
             android:layout_width="142dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
