@@ -1,5 +1,7 @@
 package com.example.wappbiu_android.api;
 
+import com.example.wappbiu_android.InvitationDetails;
+import com.example.wappbiu_android.TransferDetails;
 import com.example.wappbiu_android.entities.Contact;
 import com.example.wappbiu_android.entities.Message;
 import com.example.wappbiu_android.entities.User;
@@ -33,6 +35,11 @@ public interface WebServiceAPI {
     @GET("Contacts/{id}/messages")
     Call<List<Message>> getMessages (@Path("id") String id, @Query("user") String user);
 
+    @POST("invitations")
+    Call<InvitationDetails> invite (@Body InvitationDetails invitationDetails);
+
+    @POST("transfer")
+    Call<TransferDetails> transfer (@Body TransferDetails transferDetails);
 
 
 

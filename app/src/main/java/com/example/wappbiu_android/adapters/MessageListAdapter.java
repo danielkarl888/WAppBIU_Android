@@ -10,8 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wappbiu_android.R;
 import com.example.wappbiu_android.entities.Message;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class MessageListAdapter extends RecyclerView.Adapter {
     //LayoutInflater inflater;
@@ -103,10 +108,22 @@ public class MessageListAdapter extends RecyclerView.Adapter {
         }
 
         void bind(Message message) {
-            messageText.setText(message.getContent());
+//            String strDate;
+           messageText.setText(message.getContent());
 //            String strDate = DateFormat.getDateInstance().format(message.getCreated());
 //            String strTime = DateFormat.getDateTimeInstance().format(message.getCreated());
-//            String strTime2 = DateFormat.getTimeInstance().format(message.getCreated());
+//            DateFormat utcFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+//            utcFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+//
+//            try {
+//                Date date = utcFormat.parse(message.getCreated());
+//                 strDate = DateFormat.getDateInstance().format(date);
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//                strDate = "";
+//
+//            }
+
             timeText.setText(message.getCreated());
         }
     }
