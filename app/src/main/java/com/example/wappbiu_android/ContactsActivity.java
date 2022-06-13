@@ -37,17 +37,6 @@ public class ContactsActivity extends AppCompatActivity {
     private AppDB db;
     public static ContactDao contactDao;
     private Map<String, ContactDao> contactDaoMap;
-//    final private String[] userNames = {
-//            "Blue User", "Golden User", "Green User", "Red User", "Lightblue User", "Pink User"
-//    };
-//
-//    final private String[] lastMassages = {
-//            "Hi, how are you?", "24K Magic", "I'm GREEN!", "Red is my name", "wasap :)", "Yo!"
-//    };
-//
-//    final private String[] times = {
-//            "12:00", "00:30", "3:23", "8:59", "14:52", "12:23"
-//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +66,7 @@ public class ContactsActivity extends AppCompatActivity {
         current_user_name.setText(logged_user);
         profile_image_currentUser.setImageResource(R.drawable.profileimage);
         ArrayList<Contact> contacts = new ArrayList<>();
-//        for (int i = 0; i < lastMassages.length; i++) {
-//            Contact contact = new Contact(userNames[i], lastMassages[i], times[i]);
-//            contacts.add(contact);
-//        }
+
         ImageButton addContact = findViewById(R.id.addContact);
         listView = findViewById(R.id.list_view);
 

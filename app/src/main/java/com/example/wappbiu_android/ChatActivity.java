@@ -7,12 +7,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.wappbiu_android.adapters.ContactListAdapter;
 import com.example.wappbiu_android.adapters.MessageListAdapter;
+import com.example.wappbiu_android.api.MessageAPI;
 import com.example.wappbiu_android.entities.Message;
 import com.example.wappbiu_android.viewmodels.ContactsViewModel;
 import com.example.wappbiu_android.viewmodels.MessageViewModelFactory;
@@ -55,6 +59,13 @@ public class ChatActivity extends AppCompatActivity {
         messagesViewModel.getMessagesList().observe(this, messages1 -> {
             adapter.setMessageList(messages1);
         });
+
+        ImageButton button_send = findViewById(R.id.button_send);
+        EditText edit_message = findViewById(R.id.edit_message);
+        button_send.setOnClickListener(view -> {
+            messagesViewModel.add(new Message(0,edit_message.getText().toString(), "", true ));
+            edit_message.setText("");
+      });
 
     }
 }

@@ -34,4 +34,6 @@ public class MessagesViewModel extends ViewModel {
     public LiveData<List<Message>> getMessagesList() {
         return messagesList;
     }
+    public void add(Message message){ mRepository.addMessage(message);}
+
 }

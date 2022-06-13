@@ -56,4 +56,32 @@ public class MessageAPI {
             }
         });
     }
+
+
+    public void addMessages(MutableLiveData<List<Message>> messages, Message message, String user, String contact_name) {
+        Call<Message> call = webServiceAPI.addMessage(user,message, contact_name);
+        call.enqueue(new Callback<Message>() {
+            @Override
+            public void onResponse(Call<Message> call, Response<Message> response) {
+//                // save it into the db. in addition , update the screen - with calling the repo
+//                response.body().get(0).setLastDate(new Date());
+//                response.body().get(1).setLastDate(new Date());
+//                response.body().get(2).setLastDate(new Date());
+//                messages.postValue(response.body());
+             /*
+                new Thread(() -> {
+                    dao.clear();
+                    dao.insertList(response.body());
+                    postListData.postValue(dao.get());
+                }).start();
+                */
+
+                getAllMessages(messages,contact_name,user);
+            }
+            @Override
+            public void onFailure(Call<Message> call, Throwable t) {
+            }
+        });
+    }
+
 }

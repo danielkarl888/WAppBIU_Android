@@ -41,6 +41,9 @@ public interface WebServiceAPI {
     @POST("transfer")
     Call<TransferDetails> transfer (@Body TransferDetails transferDetails);
 
+    @POST("Contacts/{id}/messages")
+    Call<Message> addMessage (@Path("id") String id, @Body Message message, @Query("user") String user);
+
 
 
 //    @DELETE("posts/{id}")

@@ -28,6 +28,7 @@ public class MessageRepository {
 
 
 
+
     class MessageListData extends MutableLiveData<List<Message>>{
         public MessageListData () {
             super();
@@ -41,9 +42,17 @@ public class MessageRepository {
                 api.getAllMessages(this, logged_user, contact_name);
             }).start();
         }
+
     }
     public LiveData<List<Message>> getAll() {
         return messageListData;
     }
+    public void addMessage(Message message) {
+        new Thread(()->{
+            api.addMessages(messageListData, message,contact_name, logged_user);
+        }).start();
+    }
+
+
 
 }
