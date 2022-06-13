@@ -3,6 +3,7 @@ package com.example.wappbiu_android.api;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.wappbiu_android.R;
+import com.example.wappbiu_android.TransferDetails;
 import com.example.wappbiu_android.WAppBIU_Android;
 import com.example.wappbiu_android.entities.Contact;
 import com.example.wappbiu_android.entities.Message;
@@ -77,9 +78,24 @@ public class MessageAPI {
                 */
 
                 getAllMessages(messages,contact_name,user);
+                transferCall(message, user,  contact_name);
             }
             @Override
             public void onFailure(Call<Message> call, Throwable t) {
+            }
+        });
+    }
+
+    public void transferCall(Message m,  String user, String contact_name) {
+        Call<TransferDetails> call = webServiceAPI.transfer(new TransferDetails(user,contact_name, m.getContent()));
+        call.enqueue(new Callback<TransferDetails>() {
+            @Override
+            public void onResponse(Call<TransferDetails> call, Response<TransferDetails> response) {
+
+
+            }
+            @Override
+            public void onFailure(Call<TransferDetails> call, Throwable t) {
             }
         });
     }
