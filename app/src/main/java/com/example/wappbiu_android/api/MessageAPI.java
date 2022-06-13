@@ -32,8 +32,8 @@ public class MessageAPI {
         webServiceAPI = retrofit.create(WebServiceAPI.class);
     }
 
-    public void get(MutableLiveData<List<Message>> messages) {
-        Call<List<Message>> call = webServiceAPI.getMessages("raz","david");
+    public void getAllMessages(MutableLiveData<List<Message>> messages, String user, String contact_name) {
+        Call<List<Message>> call = webServiceAPI.getMessages(contact_name,user);
         call.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {

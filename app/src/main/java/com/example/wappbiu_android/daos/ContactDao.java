@@ -1,12 +1,15 @@
 package com.example.wappbiu_android.daos;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.TypeConverter;
 import androidx.room.Update;
 
+import com.example.wappbiu_android.MessageConvertor;
 import com.example.wappbiu_android.entities.Contact;
 import com.example.wappbiu_android.entities.Message;
 
