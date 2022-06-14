@@ -2,6 +2,7 @@ package com.example.wappbiu_android.api;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.wappbiu_android.InvitationDetails;
 import com.example.wappbiu_android.R;
 import com.example.wappbiu_android.WAppBIU_Android;
 import com.example.wappbiu_android.daos.ContactDao;
@@ -107,6 +108,27 @@ public class ContactAPI {
 
             @Override
             public void onFailure(Call<Contact> call, Throwable t) {
+            }
+        });
+    }
+    public void invite(Contact contact, String logged_user) {
+        Call<InvitationDetails> call = webServiceAPI.invite(new InvitationDetails(contact.getId(), logged_user,contact.getServer()));
+        call.enqueue(new Callback<InvitationDetails>() {
+            @Override
+            public void onResponse(Call<InvitationDetails> call, Response<InvitationDetails> response) {
+                // save it into the db. in addition , update the screen - with calling the repo
+                //contacts.postValue();
+             /*
+                new Thread(() -> {
+                    dao.clear();
+                    dao.insertList(response.body());
+                    postListData.postValue(dao.get());
+                }).start();
+                */
+            }
+
+            @Override
+            public void onFailure(Call<InvitationDetails> call, Throwable t) {
             }
         });
     }

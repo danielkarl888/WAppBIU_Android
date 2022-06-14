@@ -42,6 +42,7 @@ public class MessageAPI {
 //                response.body().get(0).setLastDate(new Date());
 //                response.body().get(1).setLastDate(new Date());
 //                response.body().get(2).setLastDate(new Date());
+                if(response.body().size() > 0 )
                 messages.postValue(response.body());
              /*
                 new Thread(() -> {
