@@ -79,8 +79,6 @@ public class ContactsActivity extends AppCompatActivity {
             intent.putExtra("logged_user", logged_user);
             TextView user_name = view.findViewById(R.id.user_name);
             intent.putExtra("contact_name", user_name.getText().toString());
-
-
             startActivity(intent);
         });
         addContact.setOnClickListener(view -> {

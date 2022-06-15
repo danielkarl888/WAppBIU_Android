@@ -36,6 +36,7 @@ public interface WebServiceAPI {
     @GET("Contacts/{id}/messages")
     Call<List<Message>> getMessages (@Path("id") String id, @Query("user") String user);
 
+    @Headers({"Accept: application/json"})
     @POST("invitations")
     Call<InvitationDetails> invite (@Body InvitationDetails invitationDetails);
 
