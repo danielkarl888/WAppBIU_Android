@@ -64,8 +64,10 @@ public class ChatActivity extends AppCompatActivity {
         ImageButton button_send = findViewById(R.id.button_send);
         EditText edit_message = findViewById(R.id.edit_message);
         button_send.setOnClickListener(view -> {
-            messagesViewModel.add(new Message(0,edit_message.getText().toString(), "", true ));
-            edit_message.setText("");
+            if(!edit_message.getText().toString().equals("")) {
+                messagesViewModel.add(new Message(0, edit_message.getText().toString(), "", true));
+                edit_message.setText("");
+            }
       });
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(ChatActivity.this,
                 instanceIdResult -> {
@@ -74,4 +76,5 @@ public class ChatActivity extends AppCompatActivity {
 
 
     }
+
 }

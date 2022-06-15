@@ -94,7 +94,8 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             messageText.setText(message.getContent());
             //timeText.setText(message.getCreated().toString());
 //            String strTime2 = DateFormat.getTimeInstance().format(message.getCreated());
-            timeText.setText(message.getCreated());
+            String time_str = message.getCreated();
+            timeText.setText(time_str.substring(11,16));
 
         }
     }
@@ -111,21 +112,8 @@ public class MessageListAdapter extends RecyclerView.Adapter {
         void bind(Message message) {
 //            String strDate;
            messageText.setText(message.getContent());
-//            String strDate = DateFormat.getDateInstance().format(message.getCreated());
-//            String strTime = DateFormat.getDateTimeInstance().format(message.getCreated());
-//            DateFormat utcFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-//            utcFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-//
-//            try {
-//                Date date = utcFormat.parse(message.getCreated());
-//                 strDate = DateFormat.getDateInstance().format(date);
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//                strDate = "";
-//
-//            }
-
-            timeText.setText(message.getCreated());
+            String time_str = message.getCreated();
+            timeText.setText(time_str.substring(11,16));
         }
     }
 }
