@@ -1,6 +1,6 @@
 # WAppBIU Android
 Hello!
-Welcome to our android app for our WAppBIU app!
+Welcome to our android app for our WAppBIU project!
 This app was desgined by Daniel Meir Karl and Dvir Landau
 
 # Open the App
