@@ -25,7 +25,7 @@ public class Contact {
     private String last;
 
 //    @TypeConverters(DateConverter.class)
-    private String LastDate;
+    private String lastDate;
 
     @TypeConverters(MessageConvertor.class)
     private List<Message> messages;
@@ -35,7 +35,7 @@ public class Contact {
         this.name = name;
         this.server = server;
         this.last = last;
-        LastDate = lastDate;
+        this.lastDate = lastDate;
     }
 
     public Contact() {
@@ -82,11 +82,11 @@ public class Contact {
     }
 
     public String getLastDate() {
-        return LastDate;
+        return this.lastDate;
     }
 
     public void setLastDate(String lastDate) {
-        LastDate = lastDate;
+        this.lastDate = lastDate;
     }
 
     public List<Message> getMessages() {

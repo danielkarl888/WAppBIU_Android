@@ -23,6 +23,7 @@ import com.example.wappbiu_android.viewmodels.MessageViewModelFactory;
 import com.example.wappbiu_android.viewmodels.MessagesViewModel;
 import com.example.wappbiu_android.viewmodels.MyViewModelFactory;
 import com.example.wappbiu_android.viewmodels.RegisterViewModel;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -66,6 +67,11 @@ public class ChatActivity extends AppCompatActivity {
             messagesViewModel.add(new Message(0,edit_message.getText().toString(), "", true ));
             edit_message.setText("");
       });
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(ChatActivity.this,
+                instanceIdResult -> {
+                    String newToken = instanceIdResult.getToken();
+                });
+
 
     }
 }

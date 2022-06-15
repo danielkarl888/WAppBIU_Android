@@ -35,10 +35,9 @@ public class AddContactActivity extends AppCompatActivity {
             Contact newContact = new Contact(editTextAddUsername.getText().toString(),
                                             editTextAddNickName.getText().toString(),
                                             editTextAddServer.getText().toString());
-            contactDao.insert(newContact);
+           // contactDao.insert(newContact);
             ContactAPI contactAPI = new ContactAPI(logged_user);
-            contactAPI.addContact(newContact);
-            contactAPI.invite(newContact, logged_user);
+            contactAPI.invite(newContact,logged_user, contactDao);
             i.putExtra("logged_user", logged_user);
             startActivity(i);
         });

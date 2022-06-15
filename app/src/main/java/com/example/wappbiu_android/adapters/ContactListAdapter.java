@@ -14,7 +14,10 @@ import androidx.annotation.Nullable;
 import com.example.wappbiu_android.R;
 import com.example.wappbiu_android.entities.Contact;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ContactListAdapter extends ArrayAdapter<Contact> {

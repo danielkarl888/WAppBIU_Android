@@ -8,6 +8,8 @@ import com.example.wappbiu_android.WAppBIU_Android;
 import com.example.wappbiu_android.daos.ContactDao;
 import com.example.wappbiu_android.entities.Contact;
 import com.example.wappbiu_android.entities.Message;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.Date;
 import java.util.List;
@@ -32,9 +34,13 @@ public class ContactAPI {
 //                .writeTimeout(2, TimeUnit.MINUTES)
 //                .build();
         this.logged_user = logged_user;
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
         retrofit = new Retrofit.Builder()
                 .baseUrl(WAppBIU_Android.context.getString(R.string.BaseUrl))
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .callbackExecutor(Executors.newSingleThreadExecutor())
                 //.client(okHttpClient)
                 .build();
@@ -68,20 +74,12 @@ public class ContactAPI {
         });
     }
 
-    public void addContact(Contact contact) {
+    public void addContact(Contact contact, ContactDao contactDao) {
         Call<Contact> call = webServiceAPI.createContact(logged_user,contact);
         call.enqueue(new Callback<Contact>() {
             @Override
             public void onResponse(Call<Contact> call, Response<Contact> response) {
-              // save it into the db. in addition , update the screen - with calling the repo
-              //contacts.postValue();
-             /*
-                new Thread(() -> {
-                    dao.clear();
-                    dao.insertList(response.body());
-                    postListData.postValue(dao.get());
-                }).start();
-                */
+
             }
 
             @Override
@@ -97,6 +95,7 @@ public class ContactAPI {
             public void onResponse(Call<Contact> call, Response<Contact> response) {
                 // save it into the db. in addition , update the screen - with calling the repo
                 response.body();
+
              /*
                 new Thread(() -> {
                     dao.clear();
@@ -111,13 +110,20 @@ public class ContactAPI {
             }
         });
     }
-    public void invite(Contact contact, String logged_user) {
+    public void invite(Contact contact, String logged_user, ContactDao contactDao) {
         Call<InvitationDetails> call = webServiceAPI.invite(new InvitationDetails(contact.getId(), logged_user,contact.getServer()));
+//        contactDao.insert(contact);
+//        addContact(contact, contactDao);
+
         call.enqueue(new Callback<InvitationDetails>() {
             @Override
             public void onResponse(Call<InvitationDetails> call, Response<InvitationDetails> response) {
                 // save it into the db. in addition , update the screen - with calling the repo
                 //contacts.postValue();
+                if(response.isSuccessful()){
+                    contactDao.insert(contact);
+                    addContact(contact, contactDao);
+                }
              /*
                 new Thread(() -> {
                     dao.clear();
@@ -129,6 +135,7 @@ public class ContactAPI {
 
             @Override
             public void onFailure(Call<InvitationDetails> call, Throwable t) {
+
             }
         });
     }

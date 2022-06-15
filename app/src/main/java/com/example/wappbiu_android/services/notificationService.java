@@ -18,5 +18,6 @@ public class notificationService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
+        int a = 1;
     }
 }
