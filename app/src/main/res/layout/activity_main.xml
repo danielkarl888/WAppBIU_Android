@@ -47,6 +47,15 @@
             android:padding="15dp"
             android:hint="@string/login_etPassword"
             android:inputType="textPassword" />
+        <EditText
+            android:id="@+id/editTextLoginVerifyPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:padding="15dp"
+            android:hint="Verify Password"
+            android:inputType="textPassword" />
         <TextView
             android:id="@+id/RegiSuggest"
             android:layout_width="wrap_content"

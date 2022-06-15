@@ -47,12 +47,21 @@ public class MainActivity extends AppCompatActivity {
         ImageButton settingsLink = findViewById(R.id.settingsLink);
         EditText editTextLoginUserName = binding.editTextLoginUserName;
         EditText editTextLoginPassword = binding.editTextLoginPassword;
+        TextView errorLogin = binding.errorLogin;
+
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        EditText editTextLoginVerifyPassword = binding.editTextLoginVerifyPassword;
 
         btnLogin.setOnClickListener(v -> {
             UserAPI userAPI = new UserAPI();
-            userAPI.login(new User(editTextLoginUserName.getText().toString(),"",
-                    editTextLoginPassword.getText().toString()), loginViewModel);
+            if (editTextLoginVerifyPassword.getText().toString().equals(editTextLoginPassword.getText().toString())){
+                errorLogin.setText("");
+                userAPI.login(new User(editTextLoginUserName.getText().toString(),"",
+                        editTextLoginPassword.getText().toString()), loginViewModel);
+            } else {
+                errorLogin.setText(R.string.verification_error);
+            }
+
         });
         RegiSuggest.setOnClickListener(v -> {
             Intent i = new Intent(this, RegisterActivity.class);
