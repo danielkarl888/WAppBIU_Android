@@ -22,12 +22,14 @@
                 android:layout_marginVertical="10dp"
                 android:orientation="horizontal">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_image_currentUser"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="20dp"
-                    tools:src="@drawable/profileimage" />
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/profileimage"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/gray"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
